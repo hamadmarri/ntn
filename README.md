@@ -11,7 +11,7 @@ priority among others.
 This will add `/usr/local/bin/balooctl` file with the following content:
 ```
 #!/usr/bin/env bash
-chrt -i 0 ionice -c 3 /usr/bin/balooctl $@
+chrt -i 0 ionice -c 3 /usr/bin/balooctl "$@"
 ```
 
 If you, or the system runs balooctl. Then it will be run with IDLE sched/io policies.
