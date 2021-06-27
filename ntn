@@ -57,7 +57,8 @@ if [ $1 == "-u" ]; then
 fi
 
 if [ $1 == "-l" ]; then
-    ls -lh /usr/local/bin/
+    echo "Commands proxied by ntn:"
+    ls --color=always /usr/local/bin/
 fi
 
 if [ $1 == "-h" ]; then
