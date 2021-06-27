@@ -1,6 +1,6 @@
 # Not Too Nice (NTN)
 Is a tool that adds alias files for other commands to make them run in very low priority by default.
-It adds this prefix: `chrt -i 0 ionice -c 3` to the command, which means that a the command will
+It adds this prefix: `chrt -i 0 ionice -c 3` to the command, which means that the command will
 run on IDLE scheduler policy and on IDLE IO priority. The idle here doesn't mean that the command
 is idle (not running), it means that the task will be scheduled in IDLE policy which is in the least
 priority among others.
