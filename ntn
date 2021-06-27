@@ -16,7 +16,7 @@ add() {
 	touch $local_path
 
 	echo "#!/usr/bin/env bash" > $local_path
-	echo -e "chrt -i 0 ionice -c 3 $r_path \$@" >> $local_path
+	echo -e "chrt -i 0 ionice -c 3 $r_path \"\$@\"" >> $local_path
 
 	chmod +x $local_path
 	echo "DONE"
