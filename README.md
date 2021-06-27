@@ -5,6 +5,10 @@ run on IDLE scheduler policy and on IDLE IO priority. The idle here doesn't mean
 is idle (not running), it means that the task will be scheduled in IDLE policy which is in the least
 priority among others.
 
+# Why
+Because this solution adds 0 overhead to auto down-prioritize tasks while keeping the
+arguments call the same plus without changing/touching any of the others files.
+
 ## Adding Example
 `sudo ntn -a balooctl`
 
