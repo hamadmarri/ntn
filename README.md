@@ -33,7 +33,8 @@ You will see IDLE instead if the task you're watching is added via ntn
 
 ## Auto Add preconfigured commands
 `sudo ntn -u`
-This is like an update, it will go through this [list]() and it adds the
+
+This is like an update, it will go through this [list](https://github.com/hamadmarri/ntn/blob/04c212a7a8a953e2ad81c9805f829363a19d3c6c/ntn#L4) and it adds the
 command if the command exists.
 
 Thanks
