@@ -16,6 +16,7 @@ chrt -i 0 ionice -c 3 /usr/bin/balooctl "$@"
 
 If you, or the system runs balooctl. Then it will be run with IDLE sched/io policies.
 
+-a will also try to update the currently running task by its pid automatically.
 
 ## Remove Example
 `sudo ntn -r balooctl`
@@ -27,9 +28,12 @@ TS: means normal policy (i.e. CFS)
 You will see IDLE instead if the task you're watching is added via ntn
 
 
-## TODO
-Make a default list of commands that are heavy on io like make, gcc, cmake, ...
-Those commands can be auto added with for example
-`ntn -u` <- i.e. update
+## List Added Tasks
+`ntn -l`
+
+## Auto Add preconfigured commands
+`sudo ntn -u`
+This is like an update, it will go through this [list]() and it adds the
+command if the command exists.
 
 Thanks
