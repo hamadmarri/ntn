@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+add() {
+	r_path=`which $1`
+	if [ $? -ne 0 ]; then
+		return
+	fi
+
+	local_path=/usr/local/bin/$1
+
+	if [ $local_path == $r_path ]; then
+		return
+	fi
+
+	echo Creating $local_path for $r_path ...
+	touch $local_path
+
+	echo "#!/usr/bin/env bash" > $local_path
+	echo -e "chrt -i 0 ionice -c 3 $r_path \$@" >> $local_path
+
+	chmod +x $local_path
+	echo "DONE"
+}
+
+apply() {
+    for pid in $(pidof $1)
+    do
+        chrt -pid -i 0 $pid
+        ionice -c 3 -p $pid
+    done
+}
+
+if [ $1 == "-r" ]; then
+    rm /usr/local/bin/$2
+    echo /usr/local/bin/$2 REMOVED
+fi
+
+if [ $1 == "-a" ]; then
+	add $2
+	apply $2
+fi
+
+if [ $1 == "-w" ]; then
+	watch ps -cT
+fi
+
+if [ $1 == "-h" ]; then
+    echo "Usage:"
+    echo -e "\tntn [options] <command>\n"
+
+    echo "Options:"
+ 	echo -e "-a:\tadd"
+ 	echo -e "-r:\tremove"
+ 	echo -e "-w:\twatch"
+ 	echo -e "-h:\thelp"
+
+    echo -e "\n"
+    echo "----------------------"
+    echo -e "Author: Hamad Al Marri"
+fi
+
+
+
+
+
