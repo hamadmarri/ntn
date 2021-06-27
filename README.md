@@ -6,7 +6,7 @@ is idle (not running), it means that the task will be scheduled in IDLE policy w
 priority among others.
 
 ## Adding Example
-sudo ntn -a balooctl
+`sudo ntn -a balooctl`
 
 This will add `/usr/local/bin/balooctl` file with the following content:
 ```
@@ -18,10 +18,10 @@ If you, or the system runs balooctl. Then it will be run with IDLE sched/io poli
 
 
 ## Remove Example
-sudo ntn -r balooctl
+`sudo ntn -r balooctl`
 
 ## Watch tasks policies
-ntn -w
+`ntn -w`
 
 TS: means normal policy (i.e. CFS)
 You will see IDLE instead if the task you're watching is added via ntn
@@ -30,6 +30,6 @@ You will see IDLE instead if the task you're watching is added via ntn
 ## TODO
 Make a default list of commands that are heavy on io like make, gcc, cmake, ...
 Those commands can be auto added with for example
-ntn -u <- i.e. update
+`ntn -u` <- i.e. update
 
 Thanks
