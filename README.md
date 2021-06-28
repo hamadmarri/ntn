@@ -18,7 +18,7 @@ This will add `/usr/local/bin/balooctl` file with the following content:
 chrt -i 0 ionice -c 3 /usr/bin/balooctl "$@"
 ```
 
-If you, or the system runs balooctl. Then it will be run with IDLE sched/io policies.
+If you, or the system runs balooctl. Then it will be ran with IDLE sched/io policies.
 
 -a will also try to update the currently running task by its pid automatically.
 
