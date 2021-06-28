@@ -4,18 +4,20 @@ python3 responsiveness.py -i1 -t120
 see: https://github.com/hamadmarri/os-scheduler-responsiveness-test
 ===================================
 
+-------,
+CacULE |
+-------`
 
 with ntn make gcc g++
 ---------------------
-
 	0 total response time:  1.5409839559906686s  runs:  60  average:  0.02568306593317781s
 	0 total response time:  1.5085565330045938s  runs:  60  average:  0.02514260888340989s
 	0 total response time:  1.5782444730139105s  runs:  60  average:  0.02630407455023184s
 	0 total response time:  1.3812681730196346s  runs:  60  average:  0.02302113621699391s
 	0 total response time:  1.625715483991371s   runs:  60  average:  0.02709525806652285s
+
+	avg:			1.526953724s				  0.025449229s
 ----------------------------------------------------------------------------------------------
-
-
 
 
 without ntn make gcc g++
@@ -25,5 +27,35 @@ without ntn make gcc g++
 	0 total response time:  1.818091285022092s   runs:  60  average:  0.03030152141703486s
 	0 total response time:  1.7901425889758684s  runs:  60  average:  0.02983570981626447s
 	0 total response time:  2.1280009689980943s  runs:  60  average:  0.03546668281663490s
+
+	avg:			1.847720481s				  0.030795341s
+----------------------------------------------------------------------------------------------
+
+
+------------,
+Arch kernel |
+------------`
+
+with ntn make gcc g++
+---------------------
+	0 total response time:  1.870828411000133s  runs:  60  average:  0.03118047351666888s
+	0 total response time:  1.633973202000049s  runs:  60  average:  0.02723288670000083s
+	0 total response time:  1.727936144000295s  runs:  60  average:  0.02879893573333826s
+	0 total response time:  1.789345765000575s  runs:  60  average:  0.02982242941667626s
+	0 total response time:  1.737850296000147s  runs:  60  average:  0.02896417160000245s
+
+	avg:			1.751986764s				 0.029199779s
+----------------------------------------------------------------------------------------------
+
+
+without ntn make gcc g++
+------------------------
+	0 total response time:  2.479678876998377s  runs:  60  average:  0.04132798128330629s
+	0 total response time:  2.351672097000573s  runs:  60  average:  0.03919453495000956s
+	0 total response time:  2.227253359999395s  runs:  60  average:  0.03712088933332325s
+	0 total response time:  2.909134220000396s  runs:  60  average:  0.04848557033333994s
+	0 total response time:  2.235433847999729s  runs:  60  average:  0.03725723079999549s
+
+	avg:			2.44063448s			  	 0.040677241s
 ----------------------------------------------------------------------------------------------
 
