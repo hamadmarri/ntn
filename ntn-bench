@@ -1,0 +1,29 @@
+make -j16
+python3 responsiveness.py -i1 -t120
+
+see: https://github.com/hamadmarri/os-scheduler-responsiveness-test
+===================================
+
+
+with ntn make gcc g++
+---------------------
+
+	0 total response time:  1.5409839559906686s  runs:  60  average:  0.02568306593317781s
+	0 total response time:  1.5085565330045938s  runs:  60  average:  0.02514260888340989s
+	0 total response time:  1.5782444730139105s  runs:  60  average:  0.02630407455023184s
+	0 total response time:  1.3812681730196346s  runs:  60  average:  0.02302113621699391s
+	0 total response time:  1.625715483991371s   runs:  60  average:  0.02709525806652285s
+----------------------------------------------------------------------------------------------
+
+
+
+
+without ntn make gcc g++
+------------------------
+	0 total response time:  1.6445662650039594s  runs:  60  average:  0.02740943775006599s
+	0 total response time:  1.8578012959806074s  runs:  60  average:  0.03096335493301012s
+	0 total response time:  1.818091285022092s   runs:  60  average:  0.03030152141703486s
+	0 total response time:  1.7901425889758684s  runs:  60  average:  0.02983570981626447s
+	0 total response time:  2.1280009689980943s  runs:  60  average:  0.03546668281663490s
+----------------------------------------------------------------------------------------------
+
