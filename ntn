@@ -35,13 +35,23 @@ apply() {
 }
 
 if [ $1 == "-r" ]; then
-    rm /usr/local/bin/$2
-    echo /usr/local/bin/$2 REMOVED
+    c=${@:2}
+
+    for i in $c
+    do
+        rm /usr/local/bin/$i
+        echo /usr/local/bin/$i REMOVED
+    done
 fi
 
 if [ $1 == "-a" ]; then
-	add $2
-	apply $2
+    c=${@:2}
+
+    for i in $c
+    do
+        add $i
+        apply $i
+    done
 fi
 
 if [ $1 == "-w" ]; then
