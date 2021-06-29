@@ -2,7 +2,7 @@
 
 
 list="make gcc g++ cmake pacman pacstrap mkinitcpio \
-mksquashfs rm mv cp watch htop top balooctl tar zstd zlib xz lz4 gzip bzip2 ccache"
+mksquashfs mv cp watch htop top balooctl tar zstd zlib xz lz4 gzip bzip2 ccache"
 
 add() {
 	r_path=`which $1`
@@ -41,6 +41,27 @@ if [ $1 == "-r" ]; then
     do
         rm /usr/local/bin/$i
         echo /usr/local/bin/$i REMOVED
+    done
+fi
+
+if [ $1 == "-ra" ]; then
+    for l in $list
+    do
+        r_path=`which $l`
+        if [ $? -ne 0 ]; then
+            continue
+        fi
+
+        local_path=/usr/local/bin/$l
+
+        if [ $local_path != $r_path ]; then
+            echo "continue $l"
+            continue
+        fi
+
+        rm /usr/local/bin/$l
+        echo /usr/local/bin/$l REMOVED
+
     done
 fi
 
