@@ -5,7 +5,7 @@ list="make gcc g++ cmake pacman pacstrap mkinitcpio \
 mksquashfs mv cp watch htop top balooctl tar zstd zlib xz lz4 gzip bzip2 ccache"
 
 add() {
-	r_path=`which $1`
+	r_path=$(which "$1")
 	if [ $? -ne 0 ]; then
 		return
 	fi
@@ -16,7 +16,7 @@ add() {
 		return
 	fi
 
-	echo Creating $local_path for $r_path ...
+	echo "Creating $local_path for $r_path ..."
 	touch $local_path
 
 	echo "#!/usr/bin/env bash" > $local_path
@@ -40,14 +40,14 @@ if [ $1 == "-r" ]; then
     for i in $c
     do
         rm /usr/local/bin/$i
-        echo /usr/local/bin/$i REMOVED
+        echo "/usr/local/bin/$i REMOVED"
     done
 fi
 
 if [ $1 == "-ra" ]; then
     for l in $list
     do
-        r_path=`which $l`
+        r_path=$(which $l)
         if [ $? -ne 0 ]; then
             continue
         fi
@@ -60,7 +60,7 @@ if [ $1 == "-ra" ]; then
         fi
 
         rm /usr/local/bin/$l
-        echo /usr/local/bin/$l REMOVED
+        echo "/usr/local/bin/$l REMOVED"
 
     done
 fi
@@ -106,8 +106,3 @@ if [ $1 == "-h" ]; then
     echo "----------------------"
     echo -e "Author: Hamad Al Marri"
 fi
-
-
-
-
-
