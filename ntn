@@ -12,87 +12,87 @@ add() {
 
 	local_path=/usr/local/bin/$1
 
-	if [ $local_path == $r_path ]; then
+	if [ "$local_path" == "$r_path" ]; then
 		return
 	fi
 
 	echo "Creating $local_path for $r_path ..."
-	touch $local_path
+	touch "$local_path"
 
-	echo "#!/usr/bin/env bash" > $local_path
-	echo -e "chrt -i 0 ionice -c 3 $r_path \"\$@\"" >> $local_path
+	echo "#!/usr/bin/env bash" > "$local_path"
+	echo -e "chrt -i 0 ionice -c 3 $r_path \"\$@\"" >> "$local_path"
 
-	chmod +x $local_path
+	chmod +x "$local_path"
 	echo "DONE"
 }
 
 apply() {
-    for pid in $(pidof $1)
+    for pid in $(pidof "$1")
     do
-        chrt -pid -i 0 $pid
-        ionice -c 3 -p $pid
+        chrt -pid -i 0 "$pid"
+        ionice -c 3 -p "$pid"
     done
 }
 
-if [ $1 == "-r" ]; then
-    c=${@:2}
+if [ "$1" == "-r" ]; then
+    c=${*:2}
 
     for i in $c
     do
-        rm /usr/local/bin/$i
+        rm /usr/local/bin/"$i"
         echo "/usr/local/bin/$i REMOVED"
     done
 fi
 
-if [ $1 == "-ra" ]; then
+if [ "$1" == "-ra" ]; then
     for l in $list
     do
-        r_path=$(which $l)
+        r_path=$(which "$l")
         if [ $? -ne 0 ]; then
             continue
         fi
 
-        local_path=/usr/local/bin/$l
+        local_path=/usr/local/bin/"$l"
 
-        if [ $local_path != $r_path ]; then
+        if [ "$local_path" != "$r_path" ]; then
             echo "continue $l"
             continue
         fi
 
-        rm /usr/local/bin/$l
+        rm /usr/local/bin/"$l"
         echo "/usr/local/bin/$l REMOVED"
 
     done
 fi
 
-if [ $1 == "-a" ]; then
-    c=${@:2}
+if [ "$1" == "-a" ]; then
+    c=${*:2}
 
     for i in $c
     do
-        add $i
-        apply $i
+        add "$i"
+        apply "$i"
     done
 fi
 
-if [ $1 == "-w" ]; then
+if [ "$1" == "-w" ]; then
 	watch ps -cTa
 fi
 
-if [ $1 == "-u" ]; then
+if [ "$1" == "-u" ]; then
 	for l in $list
     do
-        add $l
-        apply $l
+        add "$l"
+        apply "$l"
     done
 fi
 
-if [ $1 == "-l" ]; then
+if [ "$1" == "-l" ]; then
     echo "Commands proxied by ntn:"
     ls --color=always /usr/local/bin/
 fi
 
-if [ $1 == "-h" ]; then
+if [ "$1" == "-h" ]; then
     echo "Usage:"
     echo -e "\tntn [options] <command>\n"
 
