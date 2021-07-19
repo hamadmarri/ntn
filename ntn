@@ -5,25 +5,25 @@ list="make gcc g++ cmake pacstrap mkinitcpio \
 mksquashfs mv cp watch htop top balooctl tar zstd zlib xz lz4 gzip bzip2 ccache"
 
 add() {
-	r_path=$(which "$1")
-	if [ $? -ne 0 ]; then
-		return
-	fi
+    r_path=$(which "$1")
+    if [ $? -ne 0 ]; then
+        return
+    fi
 
-	local_path=/usr/local/bin/$1
+    local_path=/usr/local/bin/$1
 
-	if [ "$local_path" == "$r_path" ]; then
-		return
-	fi
+    if [ "$local_path" == "$r_path" ]; then
+        return
+    fi
 
-	echo "Creating $local_path for $r_path ..."
-	touch "$local_path"
+    printf "%s\n" "Creating $local_path for $r_path ..."
+    touch "$local_path"
 
-	echo "#!/usr/bin/env bash" > "$local_path"
-	echo -e "chrt -i 0 ionice -c 3 $r_path \"\$@\"" >> "$local_path"
+    printf "%s\n" "#!/usr/bin/env bash" > "$local_path"
+    printf "%s\n" "chrt -i 0 ionice -c 3 $r_path \"\$@\"" >> "$local_path"
 
-	chmod +x "$local_path"
-	echo "DONE"
+    chmod +x "$local_path"
+    printf "%s\n" "DONE"
 }
 
 apply() {
@@ -40,7 +40,7 @@ if [ "$1" == "-r" ]; then
     for i in $c
     do
         rm /usr/local/bin/"$i"
-        echo "/usr/local/bin/$i REMOVED"
+        printf "%s\n" "/usr/local/bin/$i REMOVED"
     done
 fi
 
@@ -55,12 +55,12 @@ if [ "$1" == "-ra" ]; then
         local_path=/usr/local/bin/"$l"
 
         if [ "$local_path" != "$r_path" ]; then
-            echo "continue $l"
+            printf "%s\n" "continue $l"
             continue
         fi
 
         rm /usr/local/bin/"$l"
-        echo "/usr/local/bin/$l REMOVED"
+        printf "%s\n" "/usr/local/bin/$l REMOVED"
 
     done
 fi
@@ -76,11 +76,11 @@ if [ "$1" == "-a" ]; then
 fi
 
 if [ "$1" == "-w" ]; then
-	watch ps -cTa
+    watch ps -cTa
 fi
 
 if [ "$1" == "-u" ]; then
-	for l in $list
+    for l in $list
     do
         add "$l"
         apply "$l"
@@ -88,21 +88,22 @@ if [ "$1" == "-u" ]; then
 fi
 
 if [ "$1" == "-l" ]; then
-    echo "Commands proxied by ntn:"
+    printf "%s\n" "Commands proxied by ntn:"
     ls --color=always /usr/local/bin/
 fi
 
 if [ "$1" == "-h" ]; then
-    echo "Usage:"
-    echo -e "\tntn [options] <command>\n"
-
-    echo "Options:"
- 	echo -e "-a:\tadd"
- 	echo -e "-r:\tremove"
- 	echo -e "-w:\twatch"
- 	echo -e "-h:\thelp"
-
-    echo -e "\n"
-    echo "----------------------"
-    echo -e "Author: Hamad Al Marri"
+    printf "%s\n" \
+        "Usage:" \
+        "        ntn [options] <command>" \
+        "" \
+        "Options:" \
+        "-a:     add" \
+        "-r:     remove" \
+        "-w:     watch" \
+        "-h:     help" \
+        "" \
+        "" \
+        "----------------------" \
+        "Author: Hamad Al Marri"
 fi
